@@ -14,7 +14,6 @@ export const StyledSectionNewsletter = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
 `;
 
 export const StyledAreaContentNewsletter = styled.div`
@@ -26,7 +25,6 @@ export const StyledAreaContentNewsletter = styled.div`
   justify-content: center;
   align-items: center;
   row-gap: 40px;
-  border: 1px solid red;
 `;
 
 export const StyledHeaderNewsletter = styled.h2`
