@@ -5,10 +5,6 @@ export const StyledHeader = styled.header`
   width: 80vw;
   height: 250px;
   margin: 0 auto;
-  //margin-bottom: 40px;
-  /* position: sticky;
-  top: 0;
-  z-index: 9999; */
 `;
 
 export const StyledContentHeader = styled.div`
@@ -75,7 +71,7 @@ export const StyledBasketArea = styled.div`
 `;
 
 export const StyledBasketIcon = styled.span`
-  font-size: 35px;
+  font-size: 45px;
   cursor: pointer;
 
   &:hover {
@@ -131,25 +127,4 @@ export const StyledNavLink = styled(NavLink)`
   &:hover {
     opacity: 0.3;
   }
-`;
-
-export const StyledMobileMenu = styled.div`
-  width: 80px;
-  height: 80px;
-  display: none;
-
-  @media only screen and (max-width: 768px) {
-    display: block;
-    z-index: 99999;
-  }
-`;
-
-export const StyledIconMobileMenu = styled.button`
-  padding: 20px;
-  background-color: transparent;
-  color: #000;
-  font-size: 28px;
-
-  border: none;
-  cursor: pointer;
 `;

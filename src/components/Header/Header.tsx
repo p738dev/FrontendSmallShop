@@ -16,8 +16,6 @@ import {
   StyledNavLink,
   StyledNavMenu,
   StyledListMenu,
-  StyledMobileMenu,
-  StyledIconMobileMenu,
 } from "./Header.css";
 
 const Header = () => {
@@ -25,13 +23,12 @@ const Header = () => {
 
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
 
-  const toggleBarsMobileMenu = () => {
-    isOpenMobileMenu ? setIsOpenMobileMenu(false) : setIsOpenMobileMenu(true);
-  };
-
   return (
     <StyledHeader>
-      <SmallNavbar />
+      <SmallNavbar
+        isOpenMobileMenu={isOpenMobileMenu}
+        setIsOpenMobileMenu={setIsOpenMobileMenu}
+      />
       <StyledContentHeader>
         <Link to={"/"}>
           <StyledAreaLogo>
@@ -49,11 +46,6 @@ const Header = () => {
             <TiShoppingCart />
           </StyledBasketIcon>
         </StyledBasketArea>
-        <StyledMobileMenu>
-          <StyledIconMobileMenu onClick={toggleBarsMobileMenu}>
-            <FaBars />
-          </StyledIconMobileMenu>
-        </StyledMobileMenu>
       </StyledContentHeader>
       <StyledNavMenu isOpenMobileMenu={isOpenMobileMenu}>
         <StyledListMenu>

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 import { BiLogoFacebook } from "react-icons/bi";
-import { FaInstagram } from "react-icons/fa";
+import { FaInstagram, FaBars } from "react-icons/fa";
 
 import {
   StyledAreaEmailInfo,
@@ -14,11 +14,21 @@ import {
   StyledEmailAndPhone,
   StyledIconButton,
   StyledIconInfo,
+  StyledIconMobileMenu,
   StyledInfoClient,
+  StyledMobileMenu,
   StyledSectionSmallNavbar,
 } from "./SmallNavbar.css";
 
-const SmallNavbar = () => {
+interface Props {
+  isOpenMobileMenu: boolean;
+  setIsOpenMobileMenu: Dispatch<SetStateAction<boolean>>;
+}
+
+const SmallNavbar = ({ isOpenMobileMenu, setIsOpenMobileMenu }: Props) => {
+  const toggleBarsMobileMenu = () => {
+    isOpenMobileMenu ? setIsOpenMobileMenu(false) : setIsOpenMobileMenu(true);
+  };
   return (
     <StyledSectionSmallNavbar>
       <StyledAreaInfoContent>
@@ -57,6 +67,11 @@ const SmallNavbar = () => {
           </StyledButtonLoginOrRegister>
         </Link>
       </StyledInfoClient>
+      <StyledMobileMenu>
+        <StyledIconMobileMenu onClick={toggleBarsMobileMenu}>
+          <FaBars />
+        </StyledIconMobileMenu>
+      </StyledMobileMenu>
     </StyledSectionSmallNavbar>
   );
 };

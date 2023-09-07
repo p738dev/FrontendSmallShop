@@ -8,6 +8,10 @@ export const StyledSectionSmallNavbar = styled.section`
   align-items: center;
   border: none;
   border-bottom: 1px solid black;
+
+  @media (max-width: 768px) {
+    border: none;
+  }
 `;
 
 export const StyledAreaInfoContent = styled.div`
@@ -94,4 +98,27 @@ export const StyledButtonLoginOrRegister = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`;
+
+export const StyledMobileMenu = styled.div`
+  width: 80px;
+  height: 80px;
+  display: none;
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    z-index: 99999;
+  }
+`;
+
+export const StyledIconMobileMenu = styled.button`
+  padding: 20px;
+  background-color: transparent;
+  color: #000;
+  font-size: 28px;
+  border: none;
+  cursor: pointer;
 `;
