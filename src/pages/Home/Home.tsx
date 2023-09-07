@@ -1,7 +1,7 @@
 import React from "react";
-
 import { AiFillCar } from "react-icons/ai";
 import { BsPersonFill } from "react-icons/bs";
+import Newsletter from "../../components/Newsletter/Newsletter";
 
 import {
   StyledAreaImageHome,
@@ -16,10 +16,10 @@ import {
   StyledPersonIcon,
   StyledSectionHome,
 } from "./Home.css";
-import Newsletter from "../../components/Newsletter/Newsletter";
 
 const Home = () => {
   const galleryPicture = require("../../images/galerrypictture.jpg");
+
   return (
     <StyledSectionHome>
       <StyledImageAndDeliveryArea>
