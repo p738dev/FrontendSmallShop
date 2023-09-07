@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
-import { FaBars } from "react-icons/fa";
 import SmallNavbar from "../SmallNavbar/SmallNavbar";
 import InputSearch from "../InputSearch/InputSearch";
 
@@ -39,7 +38,11 @@ const Header = () => {
           </StyledAreaLogo>
         </Link>
         <StyledAreaSearch>
-          <InputSearch title="Szukaj w sklepie..." />
+          <InputSearch
+            title="Szukaj w sklepie..."
+            type="button"
+            button="Wyszukaj"
+          />
         </StyledAreaSearch>
         <StyledBasketArea>
           <StyledBasketIcon>

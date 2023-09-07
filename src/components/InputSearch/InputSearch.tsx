@@ -3,16 +3,18 @@ import { StyledButtonSearch, StyledForm, StyledInput } from "./InputSearch.css";
 
 interface Props {
   title: string;
+  type: "button" | "submit" | "reset";
+  button: string;
 }
 
-const InputSearch = ({ title }: Props) => {
+const InputSearch = ({ title, type, button }: Props) => {
   return (
     <StyledForm>
       <StyledInput
         type="text"
         placeholder={title}
       />
-      <StyledButtonSearch type="button">Szukaj</StyledButtonSearch>
+      <StyledButtonSearch type={type}>{button}</StyledButtonSearch>
     </StyledForm>
   );
 };
