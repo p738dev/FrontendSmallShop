@@ -11,13 +11,13 @@ import {
   StyledAreaPhoneInfo,
   StyledAreaSocialIconInfo,
   StyledButtonLoginOrRegister,
+  StyledContainerSmallNavbar,
   StyledEmailAndPhone,
   StyledIconButton,
   StyledIconInfo,
   StyledIconMobileMenu,
   StyledInfoClient,
   StyledMobileMenu,
-  StyledSectionSmallNavbar,
 } from "./SmallNavbar.css";
 
 interface Props {
@@ -30,7 +30,7 @@ const SmallNavbar = ({ isOpenMobileMenu, setIsOpenMobileMenu }: Props) => {
     isOpenMobileMenu ? setIsOpenMobileMenu(false) : setIsOpenMobileMenu(true);
   };
   return (
-    <StyledSectionSmallNavbar>
+    <StyledContainerSmallNavbar>
       <StyledAreaInfoContent>
         <StyledAreaEmailInfo>
           <StyledIconInfo>
@@ -72,7 +72,7 @@ const SmallNavbar = ({ isOpenMobileMenu, setIsOpenMobileMenu }: Props) => {
           <FaBars />
         </StyledIconMobileMenu>
       </StyledMobileMenu>
-    </StyledSectionSmallNavbar>
+    </StyledContainerSmallNavbar>
   );
 };
 

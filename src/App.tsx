@@ -13,24 +13,26 @@ const App = () => {
     <>
       <GlobalStyle />
       <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-        <Route
-          path="/passrecorver"
-          element={<ForgottenPassword />}
-        />
-      </Routes>
+      <main>
+        <Routes>
+          <Route
+            path="/"
+            element={<Home />}
+          />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
+          <Route
+            path="/register"
+            element={<Register />}
+          />
+          <Route
+            path="/passrecorver"
+            element={<ForgottenPassword />}
+          />
+        </Routes>
+      </main>
       <Footer />
     </>
   );

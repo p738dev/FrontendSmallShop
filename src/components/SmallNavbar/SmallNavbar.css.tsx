@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledSectionSmallNavbar = styled.section`
+export const StyledContainerSmallNavbar = styled.div`
   height: 50px;
   margin-bottom: 20px;
   display: flex;
