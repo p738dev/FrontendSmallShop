@@ -83,6 +83,10 @@ export const StyledInfoClient = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+
+  @media (max-width: 768px) {
+    margin: 0 20px;
+  }
 `;
 
 export const StyledButtonLoginOrRegister = styled.button`
