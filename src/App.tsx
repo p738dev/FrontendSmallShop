@@ -7,6 +7,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Footer from "./components/Footer/Footer";
 import ForgottenPassword from "./components/ForgottenPassword/ForgottenPassword";
+import Shop from "./pages/Shop/Shop";
 
 const App = () => {
   return (
@@ -30,6 +31,10 @@ const App = () => {
           <Route
             path="/passrecorver"
             element={<ForgottenPassword />}
+          />
+          <Route
+            path="/shop"
+            element={<Shop />}
           />
         </Routes>
       </main>
