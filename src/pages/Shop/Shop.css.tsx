@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledShopSection = styled.section`
@@ -122,7 +123,7 @@ export const StyledAddToCartButton = styled.button`
   }
 `;
 
-export const StyledViewProduct = styled.button`
+export const StyledViewProduct = styled(Link)`
   padding: 18px;
   background-color: #556b2f;
   color: #fff;

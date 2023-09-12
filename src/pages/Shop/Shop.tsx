@@ -65,7 +65,10 @@ const Shop = () => {
               <StyledAddToCartButton type="button">
                 Dodaj do koszyka
               </StyledAddToCartButton>
-              <StyledViewProduct type="button">
+              <StyledViewProduct
+                type="button"
+                to={`/product/${product.id}`}
+              >
                 Zobacz produkt
               </StyledViewProduct>
             </StyledCart>
