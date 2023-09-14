@@ -2,12 +2,12 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import GlobalStyle from "./globalStyles/globalStyles";
 import Header from "./components/Header/Header";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
-import Register from "./pages/Register/Register";
 import Footer from "./components/Footer/Footer";
-import ForgottenPassword from "./components/ForgottenPassword/ForgottenPassword";
-import Shop from "./pages/Shop/Shop";
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import ShopPage from "./pages/ShopPage/ShopPage";
+import ForgottenPasswordPage from "./pages/ForgottenPasswordPage/ForgottenPasswordPage";
 
 const App = () => {
   return (
@@ -18,23 +18,23 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Home />}
+            element={<HomePage />}
           />
           <Route
             path="/login"
-            element={<Login />}
+            element={<LoginPage />}
           />
           <Route
             path="/register"
-            element={<Register />}
+            element={<RegisterPage />}
           />
           <Route
             path="/passrecorver"
-            element={<ForgottenPassword />}
+            element={<ForgottenPasswordPage />}
           />
           <Route
             path="/shop"
-            element={<Shop />}
+            element={<ShopPage />}
           />
         </Routes>
       </main>

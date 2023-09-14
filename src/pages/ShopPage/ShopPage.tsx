@@ -17,9 +17,9 @@ import {
   StyledButton,
   StyledAddToCartButton,
   StyledViewProduct,
-} from "./Shop.css";
+} from "./ShopPage.css";
 
-const Shop = () => {
+const ShopPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(1);
@@ -88,4 +88,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default ShopPage;

@@ -15,9 +15,9 @@ import {
   StyledParagraph,
   StyledPersonIcon,
   StyledSectionHome,
-} from "./Home.css";
+} from "./HomePage.css";
 
-const Home = () => {
+const HomePage = () => {
   const galleryPicture = require("../../images/galerrypictture.jpg");
 
   return (
@@ -57,4 +57,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

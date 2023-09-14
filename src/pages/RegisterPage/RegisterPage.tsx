@@ -15,7 +15,7 @@ import {
   StyledInputSignup,
   StyledSectionSignup,
   StyledSelect,
-} from "./Register.css";
+} from "./RegisterPage.css";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -30,7 +30,7 @@ const validationSchema = () =>
     role_id: Yup.string().required("Pole nie może być puste!"),
   });
 
-const Register = () => {
+const RegisterPage = () => {
   const initialValues = {
     name: "",
     email: "",
@@ -127,4 +127,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterPage;

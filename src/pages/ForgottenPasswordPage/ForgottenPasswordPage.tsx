@@ -9,9 +9,9 @@ import {
   StyledLabel,
   StyledSectionForgot,
   StyledTitleForgotPass,
-} from "./ForgottenPassword.css";
+} from "./ForgottenPasswordPage.css";
 
-const ForgottenPassword = () => {
+const ForgottenPasswordPage = () => {
   return (
     <StyledSectionForgot>
       <StyledHeaderForgot>Zapomniane hasło</StyledHeaderForgot>
@@ -38,4 +38,4 @@ const ForgottenPassword = () => {
   );
 };
 
-export default ForgottenPassword;
+export default ForgottenPasswordPage;

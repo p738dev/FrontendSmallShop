@@ -17,7 +17,7 @@ import {
   StyledAreaInputs,
   StyledAreaInput,
   StyledForgotPassword,
-} from "./Login.css";
+} from "./LoginPage.css";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -30,7 +30,7 @@ const validationSchema = () =>
       .max(8, "Hasło może mieć maksymalnie 8 znaków."),
   });
 
-const Login = () => {
+const LoginPage = () => {
   const initialValues: FormLoginValues = {
     email: "",
     password: "",
@@ -101,4 +101,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
