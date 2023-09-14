@@ -15,6 +15,7 @@ import {
   StyledNavLink,
   StyledNavMenu,
   StyledListMenu,
+  StyledSmallCircle,
 } from "./Header.css";
 
 const Header = () => {
@@ -45,15 +46,18 @@ const Header = () => {
           />
         </StyledAreaSearch>
         <StyledBasketArea>
-          <StyledBasketIcon>
-            <TiShoppingCart />
-          </StyledBasketIcon>
+          <Link to={"/cart"}>
+            <StyledBasketIcon>
+              <TiShoppingCart color="black" />
+              <StyledSmallCircle>0</StyledSmallCircle>
+            </StyledBasketIcon>
+          </Link>
         </StyledBasketArea>
       </StyledContentHeader>
       <StyledNavMenu isOpenMobileMenu={isOpenMobileMenu}>
         <StyledListMenu>
           <StyledNavLink to={"/"}>Strona główna</StyledNavLink>
-          <StyledNavLink to={""}>Sklep</StyledNavLink>
+          <StyledNavLink to={"/shop"}>Sklep</StyledNavLink>
           <StyledNavLink to={""}>Blog</StyledNavLink>
           <StyledNavLink to={""}>Kontakt</StyledNavLink>
         </StyledListMenu>

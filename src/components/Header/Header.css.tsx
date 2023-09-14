@@ -72,6 +72,7 @@ export const StyledBasketArea = styled.div`
 
 export const StyledBasketIcon = styled.span`
   font-size: 45px;
+  position: relative;
   cursor: pointer;
 
   &:hover {
@@ -127,4 +128,22 @@ export const StyledNavLink = styled(NavLink)`
   &:hover {
     opacity: 0.3;
   }
+`;
+
+export const StyledSmallCircle = styled.span`
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 60%;
+  background-color: #008080;
+  color: black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 10;
 `;
