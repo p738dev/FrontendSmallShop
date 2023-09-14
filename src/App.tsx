@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import ForgottenPasswordPage from "./pages/ForgottenPasswordPage/ForgottenPasswordPage";
+import CartPage from "./pages/CartPage/CartPage";
 
 const App = () => {
   return (
@@ -27,6 +28,10 @@ const App = () => {
           <Route
             path="/register"
             element={<RegisterPage />}
+          />
+          <Route
+            path="/cart"
+            element={<CartPage />}
           />
           <Route
             path="/passrecorver"
