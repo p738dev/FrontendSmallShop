@@ -67,6 +67,31 @@ export const StyledBodyRow = styled.td`
   }
 `;
 
+export const StyledAreaButtonRemoveAll = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+`;
+
+export const StyledButtonRemoveAll = styled.button`
+  width: 200px;
+  height: 50px;
+  background-color: #aa1710;
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 150px;
+    height: 50px;
+    font-size: 12px;
+  }
+`;
+
 export const StyledAreaTitleEmptyCart = styled.div`
   width: 50%;
   height: 100px;

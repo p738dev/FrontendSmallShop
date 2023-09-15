@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { openConfirmModal } from "../../store/modalSlice";
 import { removeProductFromCart } from "../../store/cartSlice";
 import { Product } from "../../types/product";
 
 import {
   StyledAddDiscButton,
+  StyledAreaButtonRemoveAll,
   StyledAreaButtons,
   StyledAreaSummary,
   StyledAreaTable,
@@ -14,6 +16,7 @@ import {
   StyledBodyRowTable,
   StyledBodyTable,
   StyledButtonOrder,
+  StyledButtonRemoveAll,
   StyledButtonShop,
   StyledCartSection,
   StyledDiscountArea,
@@ -35,7 +38,6 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   const { cartProducts } = useSelector((state: RootState) => state.cart);
-  console.log(cartProducts);
 
   return (
     <StyledCartSection>
@@ -70,6 +72,14 @@ const CartPage = () => {
           </StyledBodyTable>
         </StyledTable>
       </StyledAreaTable>
+      <StyledAreaButtonRemoveAll>
+        <StyledButtonRemoveAll
+          type="button"
+          onClick={() => dispatch(openConfirmModal())}
+        >
+          Usuń wszystkie produkty
+        </StyledButtonRemoveAll>
+      </StyledAreaButtonRemoveAll>
       {cartProducts.length === 0 && (
         <StyledAreaTitleEmptyCart>
           <StyledHeaderEmptyCart>Koszyk jest pusty.</StyledHeaderEmptyCart>
