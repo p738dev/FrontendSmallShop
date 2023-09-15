@@ -1,5 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 import GlobalStyle from "./globalStyles/globalStyles";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -9,10 +11,16 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ShopPage from "./pages/ShopPage/ShopPage";
 import ForgottenPasswordPage from "./pages/ForgottenPasswordPage/ForgottenPasswordPage";
 import CartPage from "./pages/CartPage/CartPage";
+import ConfirmModal from "./components/ConfirmModal/ConfirmModal";
 
 const App = () => {
+  const { isConfirmModalOpen } = useSelector(
+    (state: RootState) => state.confirmModal
+  );
+
   return (
     <>
+      {isConfirmModalOpen && <ConfirmModal />}
       <GlobalStyle />
       <Header />
       <main>
