@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Product } from "../../types/product";
-import axios from "axios";
+import { AppDispatch, RootState } from "../../store";
+import { getShopProducts } from "../../store/shopSlice";
 
 import {
   StyledShopContainer,
@@ -17,29 +19,29 @@ import {
   StyledButton,
   StyledAddToCartButton,
   StyledViewProduct,
+  StyledLoadingContainer,
 } from "./ShopPage.css";
 
 const ShopPage = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [lastPage, setLastPage] = useState<number>(1);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const getAllProducts = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:8000/api/products?page=${page}`
-      );
-      setProducts([...products, ...response.data.data]);
-      setLastPage(response.data.last_page);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { products, page, isLoading, last_page } = useSelector(
+    (state: RootState) => state.shop
+  );
+
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    getAllProducts();
-  }, [page]);
+    dispatch(getShopProducts({ page: currentPage }));
+  }, [currentPage]);
 
+  if (isLoading) {
+    return (
+      <StyledLoadingContainer>
+        <h3>Loading...</h3>
+      </StyledLoadingContainer>
+    );
+  }
   return (
     <StyledShopSection>
       <StyledShopContainer>
@@ -74,9 +76,9 @@ const ShopPage = () => {
             </StyledCart>
           ))}
         </StyledCardAreaProducts>
-        {lastPage !== page ? (
+        {last_page !== currentPage ? (
           <StyledAreaButtonLoad>
-            <StyledButton onClick={() => setPage(page + 1)}>
+            <StyledButton onClick={() => setCurrentPage(currentPage + 1)}>
               Więcej
             </StyledButton>
           </StyledAreaButtonLoad>

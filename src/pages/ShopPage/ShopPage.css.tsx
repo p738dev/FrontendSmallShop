@@ -138,3 +138,11 @@ export const StyledViewProduct = styled(Link)`
     opacity: 0.6;
   }
 `;
+
+export const StyledLoadingContainer = styled.div`
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

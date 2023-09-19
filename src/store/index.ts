@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./cartSlice";
 import modalSlice from "./modalSlice";
+import shopSlice from "./shopSlice";
 
 export const store = configureStore({
   reducer: {
     cart: cartSlice,
     confirmModal: modalSlice,
+    shop: shopSlice,
   },
 });
 
