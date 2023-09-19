@@ -72,14 +72,16 @@ const CartPage = () => {
           </StyledBodyTable>
         </StyledTable>
       </StyledAreaTable>
-      <StyledAreaButtonRemoveAll>
-        <StyledButtonRemoveAll
-          type="button"
-          onClick={() => dispatch(openConfirmModal())}
-        >
-          Usuń wszystkie produkty
-        </StyledButtonRemoveAll>
-      </StyledAreaButtonRemoveAll>
+      {cartProducts.length > 0 && (
+        <StyledAreaButtonRemoveAll>
+          <StyledButtonRemoveAll
+            type="button"
+            onClick={() => dispatch(openConfirmModal())}
+          >
+            Usuń wszystkie produkty
+          </StyledButtonRemoveAll>
+        </StyledAreaButtonRemoveAll>
+      )}
       {cartProducts.length === 0 && (
         <StyledAreaTitleEmptyCart>
           <StyledHeaderEmptyCart>Koszyk jest pusty.</StyledHeaderEmptyCart>
