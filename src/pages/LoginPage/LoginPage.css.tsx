@@ -112,3 +112,25 @@ export const StyledErrorMsg = styled.p`
   color: red;
   font-size: 14px;
 `;
+
+export const StyledAreaErrorMessage = styled.div`
+  width: 50%;
+  height: 50px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 20px 0;
+  background-color: red;
+  display: none;
+
+  &.errorMsg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const StyledErrorMessage = styled.p`
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+`;

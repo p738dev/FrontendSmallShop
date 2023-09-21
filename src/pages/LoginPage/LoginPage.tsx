@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios, { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import Cookies from "js-cookie";
 import { FormLoginValues } from "../../types/forms";
 
 import {
@@ -17,6 +19,8 @@ import {
   StyledAreaInputs,
   StyledAreaInput,
   StyledForgotPassword,
+  StyledAreaErrorMessage,
+  StyledErrorMessage,
 } from "./LoginPage.css";
 
 const validationSchema = () =>
@@ -31,16 +35,57 @@ const validationSchema = () =>
   });
 
 const LoginPage = () => {
+  const [errorMsg, setErrorMsg] = useState("");
+  const [token, setToken] = useState("");
+  const [role, setRole] = useState("");
+
+  const loginToken = Cookies.get("token");
+
   const initialValues: FormLoginValues = {
     email: "",
     password: "",
   };
 
-  const formSubmit = () => {};
+  const formSubmit = async (values: FormLoginValues) => {
+    try {
+      const res: AxiosResponse<{
+        is_success: boolean;
+        token: string;
+        message: string;
+        role_name: string;
+        name: string;
+      }> = await axios.post<{
+        is_success: boolean;
+        token: string;
+        message: string;
+        role_name: string;
+        name: string;
+      }>("http://localhost:8000/api/login", values, {
+        headers: {
+          Authorization: `Bearer ${loginToken}`,
+        },
+      });
+      setToken(res.data.token);
+      setRole(res.data.role_name);
+      Cookies.set("token", token, { expires: 1 });
+      Cookies.set("role", role, { expires: 1 });
+    } catch (err: any) {
+      if (err.response.data.status === 401) {
+        setErrorMsg(err.response.data.message);
+      } else if (err.response.data.status === 400) {
+        setErrorMsg(err.response.data.message);
+      } else {
+        setErrorMsg(err.response.data.message);
+      }
+    }
+  };
 
   return (
     <StyledSectionLogin>
-      <StyledHeaderLogin>Zaloguj się</StyledHeaderLogin>
+      <StyledHeaderLogin>Logowanie</StyledHeaderLogin>
+      <StyledAreaErrorMessage className={`${errorMsg ? "errorMsg" : ""}`}>
+        <StyledErrorMessage>{errorMsg}</StyledErrorMessage>
+      </StyledAreaErrorMessage>
       <Formik
         initialValues={initialValues}
         onSubmit={formSubmit}

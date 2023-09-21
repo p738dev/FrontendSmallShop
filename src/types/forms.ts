@@ -7,3 +7,8 @@ export interface FormRegisterValues {
   role_id: string;
   role?: Roles;
 }
+
+export interface FormLoginValues {
+  email: string;
+  password: string;
+}
