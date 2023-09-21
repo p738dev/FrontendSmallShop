@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Roles } from "../../types/role";
 
 import {
   StyledAreaButtnSignup,
+  StyledAreaErrorMessage,
   StyledAreaInput,
   StyledAreaInputs,
   StyledButtonSignup,
   StyledDescSite,
+  StyledErrorMessage,
   StyledErrorMsg,
   StyledFormSignup,
   StyledHeaderRegister,
@@ -16,6 +20,7 @@ import {
   StyledSectionSignup,
   StyledSelect,
 } from "./RegisterPage.css";
+import { FormRegisterValues } from "../../types/forms";
 
 const validationSchema = () =>
   Yup.object().shape({
@@ -31,17 +36,40 @@ const validationSchema = () =>
   });
 
 const RegisterPage = () => {
-  const initialValues = {
+  const navigate = useNavigate();
+
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const initialValues: FormRegisterValues = {
     name: "",
     email: "",
     password: "",
     role_id: "",
   };
 
-  const registerSubmit = () => {};
+  const registerSubmit = async (values: FormRegisterValues) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:8000/api/users/store",
+        values
+      );
+      if (res.data.is_success) {
+        navigate("/login");
+      }
+    } catch (err: any) {
+      if (err.response.data.status === 400) {
+        setErrorMsg(err.response.data.message);
+      } else {
+        setErrorMsg(err.response.data.message);
+      }
+    }
+  };
 
   return (
     <StyledSectionSignup>
+      <StyledAreaErrorMessage className={`${errorMsg ? "errorMsg" : ""}`}>
+        <StyledErrorMessage>{errorMsg}</StyledErrorMessage>
+      </StyledAreaErrorMessage>
       <StyledHeaderRegister>Rejestracja</StyledHeaderRegister>
       <StyledDescSite>
         Po zarejestrowaniu można dokonywać zakupów, a na podany adres e-mail

@@ -89,3 +89,24 @@ export const StyledErrorMsg = styled.p`
   color: red;
   font-size: 14px;
 `;
+
+export const StyledAreaErrorMessage = styled.div`
+  width: 50%;
+  height: 50px;
+  margin-top: 20px;
+  padding: 10px 0;
+  background-color: red;
+  display: none;
+
+  &.errorMsg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+export const StyledErrorMessage = styled.p`
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+`;
