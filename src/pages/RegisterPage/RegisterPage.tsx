@@ -67,10 +67,10 @@ const RegisterPage = () => {
 
   return (
     <StyledSectionSignup>
+      <StyledHeaderRegister>Rejestracja</StyledHeaderRegister>
       <StyledAreaErrorMessage className={`${errorMsg ? "errorMsg" : ""}`}>
         <StyledErrorMessage>{errorMsg}</StyledErrorMessage>
       </StyledAreaErrorMessage>
-      <StyledHeaderRegister>Rejestracja</StyledHeaderRegister>
       <StyledDescSite>
         Po zarejestrowaniu można dokonywać zakupów, a na podany adres e-mail
         będą wysłane potwierdzenia oraz zmiany statusów zamówień.
