@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { logOut } from "../../../store/logoutSlice";
 
 import {
   StyledAreaContentTopNavbar,
@@ -16,6 +20,8 @@ import {
 } from "./HorizontalTopNavbar.css";
 
 const HorizontalTopNavbar = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [isOpenCareDown, setIsOpenCareDawn] = useState<boolean>(false);
 
   return (
@@ -33,7 +39,11 @@ const HorizontalTopNavbar = () => {
             <StyledCareNav>
               <StyledSiteCareNav>
                 <StyledListCareNav>
-                  <StyledListItemCareNav>Wyloguj się</StyledListItemCareNav>
+                  <Link to={"/login"}>
+                    <StyledListItemCareNav onClick={() => dispatch(logOut())}>
+                      Wyloguj się
+                    </StyledListItemCareNav>
+                  </Link>
                 </StyledListCareNav>
               </StyledSiteCareNav>
             </StyledCareNav>
