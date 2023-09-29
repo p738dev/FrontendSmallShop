@@ -2,19 +2,25 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { openConfirmModal } from "../../store/modalSlice";
-import { removeProductFromCart } from "../../store/cartSlice";
+import {
+  minusProductQuantity,
+  plusProductQuantity,
+  removeProductFromCart,
+} from "../../store/cartSlice";
 import { Product } from "../../types/product";
 
 import {
   StyledAddDiscButton,
   StyledAreaButtonRemoveAll,
   StyledAreaButtons,
+  StyledAreaSmallButtons,
   StyledAreaSummary,
   StyledAreaTable,
   StyledAreaTitleEmptyCart,
   StyledBodyRow,
   StyledBodyRowTable,
   StyledBodyTable,
+  StyledButton,
   StyledButtonOrder,
   StyledButtonRemoveAll,
   StyledButtonShop,
@@ -29,6 +35,7 @@ import {
   StyledHeaderTable,
   StyledInput,
   StyledPriceSum,
+  StyledQuantity,
   StyledRemoveButton,
   StyledSummaryCartContainer,
   StyledTable,
@@ -54,12 +61,30 @@ const CartPage = () => {
             </StyledHeaderRowTable>
           </StyledHeaderTable>
           <StyledBodyTable>
-            {cartProducts.map((productCart: Product, index) => (
-              <StyledBodyRowTable key={index}>
+            {cartProducts.map((productCart: Product) => (
+              <StyledBodyRowTable key={productCart.id}>
                 <StyledBodyRow>{productCart.title}</StyledBodyRow>
                 <StyledBodyRow>{productCart.price}</StyledBodyRow>
-                <StyledBodyRow>ss</StyledBodyRow>
-                <StyledBodyRow>ss</StyledBodyRow>
+                <StyledBodyRow>
+                  <StyledAreaSmallButtons>
+                    <StyledButton
+                      onClick={() =>
+                        productCart.quantity > 1
+                          ? dispatch(minusProductQuantity(productCart))
+                          : dispatch(removeProductFromCart(productCart))
+                      }
+                    >
+                      -
+                    </StyledButton>
+                    <StyledQuantity>{productCart.quantity}</StyledQuantity>
+                    <StyledButton
+                      onClick={() => dispatch(plusProductQuantity(productCart))}
+                    >
+                      +
+                    </StyledButton>
+                  </StyledAreaSmallButtons>
+                </StyledBodyRow>
+                <StyledBodyRow>-</StyledBodyRow>
                 <StyledBodyRow>
                   <StyledRemoveButton
                     onClick={() => dispatch(removeProductFromCart(productCart))}

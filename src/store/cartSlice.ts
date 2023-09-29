@@ -3,12 +3,12 @@ import { Product } from "../types/product";
 
 interface CartState {
   cartProducts: Product[];
-  quantity: number;
+  totalQuantity: number;
 }
 
 const initialState: CartState = {
   cartProducts: [],
-  quantity: 0,
+  totalQuantity: 0,
 };
 
 export const cartSlice = createSlice({
@@ -20,33 +20,37 @@ export const cartSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       if (productExist) {
-        state.quantity++;
+        productExist.quantity = productExist.quantity + 1;
+        state.totalQuantity++;
       } else {
         state.cartProducts.push(action.payload);
-        state.quantity = 1;
+        state.totalQuantity++;
       }
     },
     plusProductQuantity: (state, action: PayloadAction<Product>) => {
-      state.cartProducts.find((item) => item.id === action.payload.id);
-      state.quantity++;
+      const productPlus = state.cartProducts.find(
+        (item) => item.id === action.payload.id
+      );
+      if (productPlus) {
+        productPlus.quantity += 1;
+        state.totalQuantity++;
+      }
     },
     minusProductQuantity: (state, action: PayloadAction<Product>) => {
-      state.cartProducts.find((item) => item.id === action.payload.id);
-      if (state.quantity === 1) {
-        state.quantity = 1;
-      } else {
-        state.quantity--;
+      const productMinus = state.cartProducts.find(
+        (item) => item.id === action.payload.id
+      );
+      if (productMinus) {
+        productMinus.quantity -= 1;
+        state.totalQuantity--;
       }
     },
     removeProductFromCart: (state, action: PayloadAction<Product>) => {
-      const removeProduct = state.cartProducts.filter(
-        (item) => item.id !== action.payload.id
-      );
-      state.cartProducts = removeProduct;
+      //
     },
     clearOrder: (state) => {
       state.cartProducts = [];
-      state.quantity = 0;
+      state.totalQuantity = 0;
     },
   },
 });
@@ -60,3 +64,5 @@ export const {
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+//dopracować ilość produktów

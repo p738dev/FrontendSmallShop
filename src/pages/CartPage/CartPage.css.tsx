@@ -238,3 +238,30 @@ export const StyledRemoveButton = styled.button`
   color: white;
   cursor: pointer;
 `;
+
+export const StyledAreaSmallButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 5px;
+`;
+
+export const StyledButton = styled.button`
+  width: 35px;
+  height: 30px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 20px;
+  }
+`;
+
+export const StyledQuantity = styled.p`
+  color: #000;
+  font-size: 16px;
+`;
