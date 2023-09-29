@@ -43,7 +43,7 @@ const UsersTable = () => {
       <tbody>
         {usersList.map((user) => (
           <StyledRowBodyTable key={user.name}>
-            <StyledBodyTable>{user.name}</StyledBodyTable>
+            <StyledBodyTable>{user.name.toLowerCase()}</StyledBodyTable>
             <StyledBodyTable>{user.email}</StyledBodyTable>
             <StyledBodyTable>{user.role_id}</StyledBodyTable>
             {/* <StyledBodyTable>{user.role}</StyledBodyTable> */}

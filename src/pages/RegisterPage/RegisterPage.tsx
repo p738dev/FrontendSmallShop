@@ -95,7 +95,7 @@ const RegisterPage = () => {
                   type="text"
                   placeholder="Wprowadź swoje imię"
                   name="name"
-                  value={values.name}
+                  value={values.name.toLowerCase()}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
