@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
@@ -16,15 +16,19 @@ import {
   StyledOptions,
   StyledProductsTable,
   StyledRowBodyTable,
+  StyledSearchArea,
+  StyledSearchButton,
+  StyledSearchInput,
 } from "./ProductsTable.css";
 
 const ProductsTable = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { list, isLoading, currentPage, totalPages } = useSelector(
+  const { list, isLoading, currentPage, totalPages, searchParam } = useSelector(
     (state: RootState) => state.products
   );
 
+  const [search, setSearch] = useState(searchParam);
   const [page, setPage] = useState(1);
   const [recordsPerPage] = useState(7);
 
@@ -36,6 +40,7 @@ const ProductsTable = () => {
     dispatch(
       getProducts({
         currentPage: page,
+        searchParam: search,
       })
     );
   }, [page]);
@@ -64,6 +69,27 @@ const ProductsTable = () => {
 
   return (
     <>
+      <StyledSearchArea>
+        <StyledSearchInput
+          type="text"
+          value={search}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setSearch(e.target.value)
+          }
+        />
+        <StyledSearchButton
+          onClick={() =>
+            dispatch(
+              getProducts({
+                currentPage: page,
+                searchParam: search,
+              })
+            )
+          }
+        >
+          Szukaj
+        </StyledSearchButton>
+      </StyledSearchArea>
       <StyledAreaNewProduct>
         <Link to="">
           <StyledAddProductButton>Dodaj produkt</StyledAddProductButton>
@@ -91,11 +117,7 @@ const ProductsTable = () => {
                   <Link to={""}>
                     <StyledOptionButtonEdit>Edit</StyledOptionButtonEdit>
                   </Link>
-                  <StyledOptionButtonDelete
-                  // onClick={() => handleDeleteProduct(product.id)}
-                  >
-                    Delete
-                  </StyledOptionButtonDelete>
+                  <StyledOptionButtonDelete>Delete</StyledOptionButtonDelete>
                 </StyledOptions>
               </StyledBodyTable>
             </StyledRowBodyTable>
