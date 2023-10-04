@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledAdminHomeSection = styled.section`
-  width: 80vw;
+  width: 70vw;
   height: 100vh;
   background-color: #fff;
   position: absolute;
@@ -16,7 +16,9 @@ export const StyledAdminHomeSection = styled.section`
   }
 
   @media (max-width: 992px) {
-    left: 100px;
+    width: 100vw;
+    top: 120px;
+    left: 0;
   }
 `;
 
@@ -34,7 +36,6 @@ export const StyledAreaClock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
 
   @media (min-width: 992px) and (max-width: 1024px) {
     width: 200px;
