@@ -13,7 +13,7 @@ export const StyledVerticalHeader = styled.header`
   }
 
   @media (max-width: 992px) {
-    width: 200px;
+    width: 300px;
     background-color: transparent;
   }
 `;
@@ -35,8 +35,9 @@ export const StyledNavVertical = styled.nav`
       background-color: #d2d2d2;
       display: block;
       position: absolute;
-      top: 50px;
+      top: 0;
       left: 0;
+      z-index: 10;
     }
   }
 `;
@@ -91,5 +92,6 @@ export const StyledMobileBar = styled(AiOutlineBars)`
     top: 5px;
     left: 5px;
     cursor: pointer;
+    z-index: 100;
   }
 `;
