@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { getProducts } from "../../../store/productsSlice";
@@ -19,14 +19,19 @@ import {
   StyledSearchArea,
   StyledSearchButton,
   StyledSearchInput,
+  StyledSortArea,
+  StyledSortSelect,
 } from "./ProductsTable.css";
 
 const ProductsTable = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const { list, isLoading, currentPage, totalPages, searchParam } = useSelector(
-    (state: RootState) => state.products
-  );
+  const { list, isLoading, currentPage, totalPages, searchParam, sortParam } =
+    useSelector((state: RootState) => state.products);
+
+  const searchParams = new URLSearchParams(location.search);
 
   const [search, setSearch] = useState(searchParam);
   const [page, setPage] = useState(1);
@@ -37,13 +42,16 @@ const ProductsTable = () => {
   const records = list.slice(firstIndex, lastIndex);
 
   useEffect(() => {
-    dispatch(
-      getProducts({
-        currentPage: page,
-        searchParam: search,
-      })
-    );
-  }, [page]);
+    if (searchParams.get("sort")) {
+      dispatch(
+        getProducts({
+          currentPage: page,
+          searchParam: search,
+          sortParam: searchParams.get("sort"),
+        })
+      );
+    }
+  }, [searchParams.get("sort")]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber);
 
@@ -57,6 +65,13 @@ const ProductsTable = () => {
     if (page !== lastIndex) {
       setPage(page + 1);
     }
+  };
+
+  const setSortParam = (way: string): void => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set("sort", way);
+    const data = searchParams.toString();
+    navigate(`${location.pathname}?${data}`);
   };
 
   if (isLoading) {
@@ -83,6 +98,7 @@ const ProductsTable = () => {
               getProducts({
                 currentPage: page,
                 searchParam: search,
+                sortParam: sortParam,
               })
             )
           }
@@ -90,6 +106,16 @@ const ProductsTable = () => {
           Szukaj
         </StyledSearchButton>
       </StyledSearchArea>
+      <StyledSortArea>
+        <StyledSortSelect
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            setSortParam(e.target.value);
+          }}
+        >
+          <option value={"asc"}>Cena od najniższej</option>
+          <option value={"desc"}>Cena od najwyższej</option>
+        </StyledSortSelect>
+      </StyledSortArea>
       <StyledAreaNewProduct>
         <Link to={"add_product"}>
           <StyledAddProductButton>Dodaj produkt</StyledAddProductButton>

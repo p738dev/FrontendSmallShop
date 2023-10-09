@@ -135,3 +135,23 @@ export const StyledSearchButton = styled.button`
     width: 80px;
   }
 `;
+
+export const StyledSortArea = styled.div`
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 10px;
+
+  @media (max-width: 769px) {
+    justify-content: center;
+  }
+`;
+
+export const StyledSortSelect = styled.select`
+  width: 200px;
+  height: 30px;
+
+  @media (max-width: 768px) {
+    width: 180px;
+  }
+`;

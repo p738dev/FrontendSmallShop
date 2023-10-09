@@ -27,7 +27,7 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (params: any) => {
     const res = await axios.get(
-      `http://localhost:8000/api/products?page=${params.currentPage}&searchParam=${params.searchParam}`
+      `http://localhost:8000/api/products?page=${params.currentPage}&searchParam=${params.searchParam}&sortParam=${params.sortParam}`
     );
     return res.data;
   }
