@@ -91,7 +91,7 @@ const ProductsTable = () => {
         </StyledSearchButton>
       </StyledSearchArea>
       <StyledAreaNewProduct>
-        <Link to="">
+        <Link to={"add_product"}>
           <StyledAddProductButton>Dodaj produkt</StyledAddProductButton>
         </Link>
       </StyledAreaNewProduct>

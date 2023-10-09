@@ -21,3 +21,10 @@ export interface GetProductResponse {
   total: number;
   last_page: number;
 }
+
+export interface ProductToAdd {
+  title: string;
+  price: number;
+  desc: string;
+  category: Category;
+}
