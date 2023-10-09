@@ -6,6 +6,7 @@ import { Product } from "../../types/product";
 import DescProductPage from "../../components/DescProductPage/DescProductPage";
 import QuestionFormProduct from "../../components/QuestionFormProduct/QuestionFormProduct";
 import { AppDispatch } from "../../store";
+import { addProductToCart } from "../../store/cartSlice";
 
 import {
   StyledAreaButtonAddCart,
@@ -21,7 +22,6 @@ import {
   StyledSectionProductPage,
   StyledTitleProduct,
 } from "./ProductPage.css";
-import { addProductToCart } from "../../store/cartSlice";
 
 const ProductPage = () => {
   const dispatch = useDispatch<AppDispatch>();
