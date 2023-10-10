@@ -2,8 +2,12 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
-import { getProducts } from "../../../store/productsSlice";
+import { deleteProduct, getProducts } from "../../../store/productsSlice";
 import ProductPagination from "../Pagination/ProductPagination";
+import QuestionDialog from "../../QuestionDialog/QuestionDialog";
+import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
+import { openQuestionRemoveDialog } from "../../../store/questionDialogSlice";
+import { closeConfirmDialog } from "../../../store/confirmDialogSlice";
 
 import {
   StyledAddProductButton,
@@ -30,6 +34,14 @@ const ProductsTable = () => {
 
   const { list, isLoading, currentPage, totalPages, searchParam, sortParam } =
     useSelector((state: RootState) => state.products);
+
+  const { isConfirmDialogOpen } = useSelector(
+    (state: RootState) => state.confirmDialog
+  );
+
+  const { isQuestionRemoveProduct } = useSelector(
+    (state: RootState) => state.questionDialog
+  );
 
   const searchParams = new URLSearchParams(location.search);
 
@@ -82,8 +94,22 @@ const ProductsTable = () => {
     );
   }
 
+  const handleDeleteProduct = (id: string) => {
+    dispatch(openQuestionRemoveDialog());
+    if (!isConfirmDialogOpen) {
+      dispatch(deleteProduct(id));
+      setTimeout(() => {
+        dispatch(closeConfirmDialog());
+      }, 2000);
+    }
+  };
+
   return (
     <>
+      {isQuestionRemoveProduct && <QuestionDialog />}
+      {isConfirmDialogOpen && (
+        <ConfirmDialog title="Produkt został pomyślnie usunięty" />
+      )}
       <StyledSearchArea>
         <StyledSearchInput
           type="text"
@@ -141,9 +167,13 @@ const ProductsTable = () => {
               <StyledBodyTable>
                 <StyledOptions>
                   <Link to={""}>
-                    <StyledOptionButtonEdit>Edit</StyledOptionButtonEdit>
+                    <StyledOptionButtonEdit>Edytuj</StyledOptionButtonEdit>
                   </Link>
-                  <StyledOptionButtonDelete>Delete</StyledOptionButtonDelete>
+                  <StyledOptionButtonDelete
+                    onClick={() => handleDeleteProduct(product.id)}
+                  >
+                    Usuń
+                  </StyledOptionButtonDelete>
                 </StyledOptions>
               </StyledBodyTable>
             </StyledRowBodyTable>

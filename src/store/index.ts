@@ -5,6 +5,8 @@ import shopSlice from "./shopSlice";
 import usersSlice from "./usersSlice";
 import productsSlice from "./productsSlice";
 import logoutSlice from "./logoutSlice";
+import confirmDialogSlice from "./confirmDialogSlice";
+import questionDialogSlice from "./questionDialogSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +16,8 @@ export const store = configureStore({
     products: productsSlice,
     users: usersSlice,
     logout: logoutSlice,
+    confirmDialog: confirmDialogSlice,
+    questionDialog: questionDialogSlice,
   },
 });
 
