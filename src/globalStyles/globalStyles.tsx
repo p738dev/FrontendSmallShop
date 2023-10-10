@@ -8,8 +8,12 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        min-height: 100vh;
         min-width: 100vw;
+    }
+
+    main {
+        width: 100%;
+        min-height: calc(100vh - 250px - 280px);
     }
 `;
 

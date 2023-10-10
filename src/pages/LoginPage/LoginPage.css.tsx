@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StyledSectionLogin = styled.section`
   width: 80vw;
-  height: 300px;
+  height: 50vh;
   margin: 0 auto;
   padding-top: 10px;
 `;
@@ -74,6 +74,8 @@ export const StyledAreaRememberLogin = styled.div`
   @media only screen and (max-width: 768px) {
     width: 80%;
     margin-top: 10px;
+    display: block;
+    align-items: center;
   }
 `;
 

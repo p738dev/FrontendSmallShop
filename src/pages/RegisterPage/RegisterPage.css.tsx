@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const StyledSectionSignup = styled.section`
   width: 80vw;
-  height: 450px;
+  height: 70vh;
   margin: 0 auto;
-  margin-bottom: 30px;
   padding-top: 10px;
 `;
 
