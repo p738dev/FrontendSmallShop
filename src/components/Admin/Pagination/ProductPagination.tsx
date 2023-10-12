@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   StyledAreaList,
@@ -10,7 +10,7 @@ import {
 interface Props {
   totalPages: number;
   recordsPerPage: number;
-  paginate: any;
+  paginate: (pageNumber: number) => void;
   prevPage: () => void;
   nextPage: () => void;
 }
@@ -22,24 +22,21 @@ const ProductPagination = ({
   prevPage,
   nextPage,
 }: Props) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalPages / recordsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Math.ceil(totalPages / recordsPerPage);
 
   return (
     <StyledAreaPagination>
       <StyledAreaNav>
         <StyledAreaList>
           <StyledButtonPage onClick={prevPage}>Prev</StyledButtonPage>
-          {pageNumbers.map((number) => (
-            <li key={number}>
-              <StyledButtonPage onClick={() => paginate(number)}>
-                {number}
-              </StyledButtonPage>
-            </li>
-          ))}
+          {pageNumbers > 0 &&
+            [...Array(pageNumbers)].map((number, index) => (
+              <li key={index}>
+                <StyledButtonPage onClick={() => paginate(index)}>
+                  {index + 1}
+                </StyledButtonPage>
+              </li>
+            ))}
           <StyledButtonPage onClick={nextPage}>Next</StyledButtonPage>
         </StyledAreaList>
       </StyledAreaNav>

@@ -5,8 +5,8 @@ import { AppDispatch, RootState } from "../../../store";
 import { deleteProduct, getProducts } from "../../../store/productsSlice";
 import ProductPagination from "../Pagination/ProductPagination";
 import QuestionDialog from "../../QuestionDialog/QuestionDialog";
-import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import { openQuestionRemoveDialog } from "../../../store/questionDialogSlice";
+import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import { closeConfirmDialog } from "../../../store/confirmDialogSlice";
 
 import {
@@ -63,9 +63,9 @@ const ProductsTable = () => {
         })
       );
     }
-  }, [searchParams.get("sort")]);
+  }, [page, searchParams.get("sort")]);
 
-  const paginate = (pageNumber: number) => setPage(pageNumber);
+  const paginate = (pageNumber: number) => setPage(pageNumber + 1);
 
   const prevPage = () => {
     if (page !== firstIndex) {
