@@ -6,11 +6,19 @@ export const StyledAreaPagination = styled.div`
   padding-bottom: 5px;
   display: flex;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    height: 90px;
+  }
 `;
 
 export const StyledAreaNav = styled.nav`
   width: 50%;
   height: 100%;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
 `;
 
 export const StyledAreaList = styled.ul`
@@ -18,7 +26,14 @@ export const StyledAreaList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  column-gap: 5px;
+
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 2px;
+  }
 `;
 
 export const StyledButtonPage = styled.button`
