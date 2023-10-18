@@ -18,10 +18,10 @@ const initialState: ShopState = {
 
 export const getShopProducts = createAsyncThunk(
   "shop/getShopProducts",
-  async (params: any) => {
+  async (page: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/products?page=${params.page}`
+        `http://localhost:8000/api/products?page=${page}`
       );
       console.log(response.data);
       return response.data;
@@ -39,7 +39,7 @@ export const shopSlice = createSlice({
     });
     builder.addCase(getShopProducts.fulfilled, (state, action: any) => {
       state.isLoading = false;
-      state.products = action.payload.data;
+      state.products = state.products.concat(action.payload.data);
       state.last_page = action.payload.last_page;
       state.page = action.payload.current_page;
     });

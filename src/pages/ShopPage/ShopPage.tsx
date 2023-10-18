@@ -29,10 +29,10 @@ const ShopPage = () => {
     (state: RootState) => state.shop
   );
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(page);
 
   useEffect(() => {
-    dispatch(getShopProducts({ page: currentPage }));
+    dispatch(getShopProducts(currentPage));
   }, [currentPage]);
 
   if (isLoading) {
