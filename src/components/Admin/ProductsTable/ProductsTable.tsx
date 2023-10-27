@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
@@ -8,6 +8,7 @@ import QuestionDialog from "../../QuestionDialog/QuestionDialog";
 import { openQuestionRemoveDialog } from "../../../store/questionDialogSlice";
 import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import { closeConfirmDialog } from "../../../store/confirmDialogSlice";
+import SearchProduct from "../SearchProduct/SearchProduct";
 
 import {
   StyledAddProductButton,
@@ -20,11 +21,6 @@ import {
   StyledOptions,
   StyledProductsTable,
   StyledRowBodyTable,
-  StyledSearchArea,
-  StyledSearchButton,
-  StyledSearchInput,
-  StyledSortArea,
-  StyledSortSelect,
 } from "./ProductsTable.css";
 
 const ProductsTable = () => {
@@ -32,8 +28,14 @@ const ProductsTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { list, isLoading, currentPage, totalPages, searchParam, sortParam } =
-    useSelector((state: RootState) => state.products);
+  const {
+    list,
+    isLoading,
+    currentPage,
+    totalPages,
+    searchParam,
+    recordsPerPage,
+  } = useSelector((state: RootState) => state.products);
 
   const { isConfirmDialogOpen } = useSelector(
     (state: RootState) => state.confirmDialog
@@ -43,27 +45,21 @@ const ProductsTable = () => {
     (state: RootState) => state.questionDialog
   );
 
-  const searchParams = new URLSearchParams(location.search);
-
-  const [search, setSearch] = useState(searchParam);
-  const [page, setPage] = useState(1);
-  const [recordsPerPage] = useState(7);
+  const [search, setSearch] = useState<string>(searchParam);
+  const [page, setPage] = useState<number>(1);
 
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
   const records = list.slice(firstIndex, lastIndex);
 
   useEffect(() => {
-    if (searchParams.get("sort")) {
-      dispatch(
-        getProducts({
-          currentPage: page,
-          searchParam: search,
-          sortParam: searchParams.get("sort"),
-        })
-      );
-    }
-  }, [page, searchParams.get("sort")]);
+    dispatch(
+      getProducts({
+        page: page,
+        searchParam: search,
+      })
+    );
+  }, [page, searchParam]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber + 1);
 
@@ -110,38 +106,11 @@ const ProductsTable = () => {
       {isConfirmDialogOpen && (
         <ConfirmDialog title="Produkt został pomyślnie usunięty" />
       )}
-      <StyledSearchArea>
-        <StyledSearchInput
-          type="text"
-          value={search}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setSearch(e.target.value)
-          }
-        />
-        <StyledSearchButton
-          onClick={() =>
-            dispatch(
-              getProducts({
-                currentPage: page,
-                searchParam: search,
-                sortParam: sortParam,
-              })
-            )
-          }
-        >
-          Szukaj
-        </StyledSearchButton>
-      </StyledSearchArea>
-      <StyledSortArea>
-        <StyledSortSelect
-          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
-            setSortParam(e.target.value);
-          }}
-        >
-          <option value={"asc"}>Cena od najniższej</option>
-          <option value={"desc"}>Cena od najwyższej</option>
-        </StyledSortSelect>
-      </StyledSortArea>
+      <SearchProduct
+        search={search}
+        setSearch={setSearch}
+        page={page}
+      />
       <StyledAreaNewProduct>
         <Link to={"add_product"}>
           <StyledAddProductButton>Dodaj produkt</StyledAddProductButton>
