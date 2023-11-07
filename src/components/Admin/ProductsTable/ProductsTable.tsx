@@ -65,6 +65,14 @@ const ProductsTable = () => {
           searchParam: search,
         })
       );
+    } else {
+      dispatch(
+        getProducts({
+          page: page,
+          searchParam: search,
+          sortParam: sortParam,
+        })
+      );
     }
   }, [page, searchParam, searchParams.get("sort")]);
 
@@ -121,10 +129,12 @@ const ProductsTable = () => {
       />
       <StyledSortArea>
         <StyledSortSelect
+          defaultValue={""}
           onChange={(e: ChangeEvent<HTMLSelectElement>) => {
             setSortParam(e.target.value);
           }}
         >
+          <option value={""}></option>
           <option value={"desc"}>Cena od najniższej</option>
           <option value={"asc"}>Cena od najwyższej</option>
         </StyledSortSelect>
