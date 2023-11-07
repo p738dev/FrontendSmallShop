@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
@@ -21,6 +21,8 @@ import {
   StyledOptions,
   StyledProductsTable,
   StyledRowBodyTable,
+  StyledSortArea,
+  StyledSortSelect,
 } from "./ProductsTable.css";
 
 const ProductsTable = () => {
@@ -34,6 +36,7 @@ const ProductsTable = () => {
     currentPage,
     totalPages,
     searchParam,
+    sortParam,
     recordsPerPage,
   } = useSelector((state: RootState) => state.products);
 
@@ -45,6 +48,8 @@ const ProductsTable = () => {
     (state: RootState) => state.questionDialog
   );
 
+  const searchParams = new URLSearchParams(location.search);
+
   const [search, setSearch] = useState<string>(searchParam);
   const [page, setPage] = useState<number>(1);
 
@@ -53,13 +58,15 @@ const ProductsTable = () => {
   const records = list.slice(firstIndex, lastIndex);
 
   useEffect(() => {
-    dispatch(
-      getProducts({
-        page: page,
-        searchParam: search,
-      })
-    );
-  }, [page, searchParam]);
+    if (searchParams.get("sort")) {
+      dispatch(
+        getProducts({
+          page: page,
+          searchParam: search,
+        })
+      );
+    }
+  }, [page, searchParam, searchParams.get("sort")]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber + 1);
 
@@ -110,7 +117,18 @@ const ProductsTable = () => {
         search={search}
         setSearch={setSearch}
         page={page}
+        sortParam={sortParam}
       />
+      <StyledSortArea>
+        <StyledSortSelect
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+            setSortParam(e.target.value);
+          }}
+        >
+          <option value={"desc"}>Cena od najniższej</option>
+          <option value={"asc"}>Cena od najwyższej</option>
+        </StyledSortSelect>
+      </StyledSortArea>
       <StyledAreaNewProduct>
         <Link to={"add_product"}>
           <StyledAddProductButton>Dodaj produkt</StyledAddProductButton>

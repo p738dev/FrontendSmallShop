@@ -13,9 +13,10 @@ interface SearchProps {
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
   page: number;
+  sortParam: string;
 }
 
-const SearchProduct = ({ search, setSearch, page }: SearchProps) => {
+const SearchProduct = ({ search, setSearch, page, sortParam }: SearchProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
@@ -33,6 +34,7 @@ const SearchProduct = ({ search, setSearch, page }: SearchProps) => {
             getProducts({
               page: page,
               searchParam: search,
+              sortParam: sortParam,
             })
           )
         }
