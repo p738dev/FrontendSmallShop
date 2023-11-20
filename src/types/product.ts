@@ -28,3 +28,5 @@ export interface ProductToAdd {
   desc: string;
   category: Category;
 }
+
+export type ProductToEdit = Partial<Product>;

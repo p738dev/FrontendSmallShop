@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import ProductsTable from "../ProductsTable/ProductsTable";
 import UsersTable from "../UsersTable/UsersTable";
 import AddProduct from "../AddProduct/AddProduct";
+import EditProduct from "../EditProduct/EditProduct";
 
 const AdminRoute = () => {
   return (
@@ -19,6 +20,10 @@ const AdminRoute = () => {
         <Route
           path="/products/add_product"
           element={<AddProduct />}
+        />
+        <Route
+          path="/products/edit_product/:id"
+          element={<EditProduct />}
         />
       </Routes>
     </div>

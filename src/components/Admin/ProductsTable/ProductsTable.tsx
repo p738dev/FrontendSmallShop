@@ -163,7 +163,7 @@ const ProductsTable = () => {
               <StyledBodyTable>{product.category}</StyledBodyTable>
               <StyledBodyTable>
                 <StyledOptions>
-                  <Link to={""}>
+                  <Link to={`edit_product/${product.id}`}>
                     <StyledOptionButtonEdit>Edytuj</StyledOptionButtonEdit>
                   </Link>
                   <StyledOptionButtonDelete
