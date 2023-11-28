@@ -1,14 +1,14 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "../Header/Header";
-import Home from "../../pages/Home/Home";
-import Login from "../../pages/Login/Login";
-import Register from "../../pages/Register/Register";
-import ForgottenPassword from "../ForgottenPassword/ForgottenPassword";
 import CartPage from "../../pages/CartPage/CartPage";
-import Shop from "../../pages/Shop/Shop";
 import ProductPage from "../../pages/ProductPage/ProductPage";
 import Footer from "../Footer/Footer";
+import HomePage from "../../pages/HomePage/HomePage";
+import LoginPage from "../../pages/LoginPage/LoginPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import ForgottenPasswordPage from "../../pages/ForgottenPasswordPage/ForgottenPasswordPage";
+import ShopPage from "../../pages/ShopPage/ShopPage";
 
 const Layout = () => {
   return (
@@ -18,19 +18,19 @@ const Layout = () => {
         <Routes>
           <Route
             path="/"
-            element={<Home />}
+            element={<HomePage />}
           />
           <Route
             path="/login"
-            element={<Login />}
+            element={<LoginPage />}
           />
           <Route
             path="/register"
-            element={<Register />}
+            element={<RegisterPage />}
           />
           <Route
             path="/passrecorver"
-            element={<ForgottenPassword />}
+            element={<ForgottenPasswordPage />}
           />
           <Route
             path="/cart"
@@ -38,7 +38,7 @@ const Layout = () => {
           />
           <Route
             path="/shop"
-            element={<Shop />}
+            element={<ShopPage />}
           />
           <Route
             path="product/:id"
