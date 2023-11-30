@@ -63,6 +63,7 @@ const ProductsTable = () => {
         getProducts({
           page: page,
           searchParam: search,
+          sortParam: searchParams.get("sort"),
         })
       );
     } else {
@@ -74,7 +75,7 @@ const ProductsTable = () => {
         })
       );
     }
-  }, [page, searchParam, searchParams.get("sort")]);
+  }, [page, searchParam, searchParams.get("sort"), sortParam]);
 
   const paginate = (pageNumber: number) => setPage(pageNumber + 1);
 
