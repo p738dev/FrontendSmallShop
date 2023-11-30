@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -35,16 +35,17 @@ const validationSchema = () =>
   });
 
 const LoginPage = () => {
-  const [errorMsg, setErrorMsg] = useState("");
-  const [token, setToken] = useState("");
-  const [role, setRole] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const loginToken = Cookies.get("token");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const initialValues: FormLoginValues = {
     email: "",
     password: "",
   };
+
+  const loginToken = Cookies.get("token");
 
   const formSubmit = async (values: FormLoginValues) => {
     try {
@@ -53,22 +54,27 @@ const LoginPage = () => {
         token: string;
         message: string;
         role_name: string;
-        name: string;
       }> = await axios.post<{
         is_success: boolean;
         token: string;
         message: string;
         role_name: string;
-        name: string;
       }>("http://localhost:8000/api/login", values, {
         headers: {
           Authorization: `Bearer ${loginToken}`,
         },
       });
-      setToken(res.data.token);
-      setRole(res.data.role_name);
+      const role = res.data.role_name;
+      const token = res.data.token;
       Cookies.set("token", token, { expires: 1 });
       Cookies.set("role", role, { expires: 1 });
+
+      if (token && location.pathname.includes("login")) {
+        navigate("/admin");
+      }
+      if (token && role === "user" && location.pathname.includes("login")) {
+        navigate("/login");
+      }
     } catch (err: any) {
       if (err.response.data.status === 401) {
         setErrorMsg(err.response.data.message);

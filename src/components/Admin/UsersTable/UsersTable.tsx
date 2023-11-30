@@ -37,7 +37,6 @@ const UsersTable = () => {
           <StyledHederTable>Name</StyledHederTable>
           <StyledHederTable>Email</StyledHederTable>
           <StyledHederTable>Role_id</StyledHederTable>
-          {/* <StyledHederTable>Role</StyledHederTable> */}
         </tr>
       </thead>
       <tbody>
@@ -46,7 +45,6 @@ const UsersTable = () => {
             <StyledBodyTable>{user.name.toLowerCase()}</StyledBodyTable>
             <StyledBodyTable>{user.email}</StyledBodyTable>
             <StyledBodyTable>{user.role_id}</StyledBodyTable>
-            {/* <StyledBodyTable>{user.role}</StyledBodyTable> */}
           </StyledRowBodyTable>
         ))}
       </tbody>
