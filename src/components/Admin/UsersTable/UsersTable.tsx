@@ -20,7 +20,7 @@ const UsersTable = () => {
 
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return (
