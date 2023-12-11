@@ -29,7 +29,6 @@ export const StyledFormSignup = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
 
   @media (max-width: 768px) {
     height: 340px;
