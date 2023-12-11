@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const StyledCartSection = styled.section`
@@ -198,12 +199,13 @@ export const StyledAreaButtons = styled.div`
   }
 `;
 
-export const StyledButtonShop = styled.button`
+export const StyledLinkShop = styled(Link)`
   width: 200px;
   height: 50px;
   background-color: #338aff;
   color: #fff;
   font-size: 16px;
+  text-decoration: none;
   border: none;
   display: flex;
   align-items: center;

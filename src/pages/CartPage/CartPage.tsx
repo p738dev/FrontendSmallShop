@@ -23,7 +23,6 @@ import {
   StyledButton,
   StyledButtonOrder,
   StyledButtonRemoveAll,
-  StyledButtonShop,
   StyledCartSection,
   StyledDiscountArea,
   StyledHeaderCart,
@@ -34,6 +33,7 @@ import {
   StyledHeaderSum,
   StyledHeaderTable,
   StyledInput,
+  StyledLinkShop,
   StyledPriceSum,
   StyledQuantity,
   StyledRemoveButton,
@@ -128,7 +128,7 @@ const CartPage = () => {
         </StyledAreaSummary>
       </StyledSummaryCartContainer>
       <StyledAreaButtons>
-        <StyledButtonShop>Kontynuuj zakupy</StyledButtonShop>
+        <StyledLinkShop to={"/shop"}>Kontynuuj zakupy</StyledLinkShop>
         <StyledButtonOrder>Zamówienie</StyledButtonOrder>
       </StyledAreaButtons>
     </StyledCartSection>
