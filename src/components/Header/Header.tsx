@@ -58,8 +58,8 @@ const Header = () => {
         <StyledListMenu>
           <StyledNavLink to={"/"}>Strona główna</StyledNavLink>
           <StyledNavLink to={"/shop"}>Sklep</StyledNavLink>
-          <StyledNavLink to={""}>Blog</StyledNavLink>
-          <StyledNavLink to={""}>Kontakt</StyledNavLink>
+          <StyledNavLink to={"/"}>Blog</StyledNavLink>
+          <StyledNavLink to={"/"}>Kontakt</StyledNavLink>
         </StyledListMenu>
       </StyledNavMenu>
     </StyledHeader>
