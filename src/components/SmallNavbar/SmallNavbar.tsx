@@ -1,5 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { logOut } from "../../store/logoutSlice";
 import { MdAlternateEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 import { BiLogoFacebook } from "react-icons/bi";
@@ -11,6 +15,7 @@ import {
   StyledAreaPhoneInfo,
   StyledAreaSocialIconInfo,
   StyledButtonLoginOrRegister,
+  StyledButtonLogout,
   StyledContainerSmallNavbar,
   StyledEmailAndPhone,
   StyledIconButton,
@@ -26,9 +31,14 @@ interface Props {
 }
 
 const SmallNavbar = ({ isOpenMobileMenu, setIsOpenMobileMenu }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const toggleBarsMobileMenu = () => {
     isOpenMobileMenu ? setIsOpenMobileMenu(false) : setIsOpenMobileMenu(true);
   };
+
+  const token = Cookies.get("token");
+
   return (
     <StyledContainerSmallNavbar>
       <StyledAreaInfoContent>
@@ -59,7 +69,15 @@ const SmallNavbar = ({ isOpenMobileMenu, setIsOpenMobileMenu }: Props) => {
       </StyledAreaInfoContent>
       <StyledInfoClient>
         <Link to={"/login"}>
-          <StyledButtonLoginOrRegister>Zaloguj się</StyledButtonLoginOrRegister>
+          {token ? (
+            <StyledButtonLogout onClick={() => dispatch(logOut())}>
+              Wyloguj się
+            </StyledButtonLogout>
+          ) : (
+            <StyledButtonLoginOrRegister>
+              Zaloguj się
+            </StyledButtonLoginOrRegister>
+          )}
         </Link>
         <Link to={"/register"}>
           <StyledButtonLoginOrRegister>

@@ -104,6 +104,21 @@ export const StyledButtonLoginOrRegister = styled.button`
   }
 `;
 
+export const StyledButtonLogout = styled.button`
+  width: 90px;
+  height: 30px;
+  background-color: transparent;
+  color: black;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 export const StyledMobileMenu = styled.div`
   width: 80px;
   height: 80px;
