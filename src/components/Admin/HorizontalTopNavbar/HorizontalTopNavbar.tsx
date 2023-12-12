@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
 import { AppDispatch } from "../../../store";
 import { logOut } from "../../../store/logoutSlice";
 
@@ -23,6 +24,8 @@ const HorizontalTopNavbar = () => {
 
   const [isOpenCareDown, setIsOpenCareDawn] = useState<boolean>(false);
 
+  const name = Cookies.get("name");
+
   return (
     <StyledHorizontalHeader>
       <StyledAreaContentTopNavbar>
@@ -30,7 +33,7 @@ const HorizontalTopNavbar = () => {
         <StyledHeaderActualPanel>Shop</StyledHeaderActualPanel>
         <StyledAreaLoginAdminPerson>
           <StyledPersonIcon />
-          <StyledNameLoginPerson>Jan</StyledNameLoginPerson>
+          <StyledNameLoginPerson>{name}</StyledNameLoginPerson>
           <StyledCareDownIcon
             onClick={() => setIsOpenCareDawn(!isOpenCareDown)}
           />
