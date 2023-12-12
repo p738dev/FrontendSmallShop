@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../store";
 import { logOut } from "../../../store/logoutSlice";
@@ -31,7 +30,7 @@ const HorizontalTopNavbar = () => {
         <StyledHeaderActualPanel>Shop</StyledHeaderActualPanel>
         <StyledAreaLoginAdminPerson>
           <StyledPersonIcon />
-          <StyledNameLoginPerson>Jan Kowalski</StyledNameLoginPerson>
+          <StyledNameLoginPerson>Jan</StyledNameLoginPerson>
           <StyledCareDownIcon
             onClick={() => setIsOpenCareDawn(!isOpenCareDown)}
           />
@@ -39,11 +38,9 @@ const HorizontalTopNavbar = () => {
             <StyledCareNav>
               <StyledSiteCareNav>
                 <StyledListCareNav>
-                  <Link to={"/login"}>
-                    <StyledListItemCareNav onClick={() => dispatch(logOut())}>
-                      Wyloguj się
-                    </StyledListItemCareNav>
-                  </Link>
+                  <StyledListItemCareNav onClick={() => dispatch(logOut())}>
+                    Wyloguj się
+                  </StyledListItemCareNav>
                 </StyledListCareNav>
               </StyledSiteCareNav>
             </StyledCareNav>
