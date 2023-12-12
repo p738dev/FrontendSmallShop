@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 import SmallNavbar from "../SmallNavbar/SmallNavbar";
 import InputSearch from "../InputSearch/InputSearch";
 
@@ -20,6 +22,8 @@ import {
 
 const Header = () => {
   const logo = require("../../images/logoo.jpg");
+
+  const { totalQuantity } = useSelector((state: RootState) => state.cart);
 
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
 
@@ -49,7 +53,7 @@ const Header = () => {
           <Link to={"/cart"}>
             <StyledBasketIcon>
               <TiShoppingCart color="black" />
-              <StyledSmallCircle>0</StyledSmallCircle>
+              <StyledSmallCircle>{totalQuantity}</StyledSmallCircle>
             </StyledBasketIcon>
           </Link>
         </StyledBasketArea>
