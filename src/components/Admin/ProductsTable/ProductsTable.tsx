@@ -30,15 +30,9 @@ const ProductsTable = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const {
-    list,
-    isLoading,
-    currentPage,
-    totalPages,
-    searchParam,
-    sortParam,
-    recordsPerPage,
-  } = useSelector((state: RootState) => state.products);
+  const { list, isLoading, currentPage, searchParam, sortParam } = useSelector(
+    (state: RootState) => state.products
+  );
 
   const { isConfirmDialogOpen } = useSelector(
     (state: RootState) => state.confirmDialog
@@ -52,6 +46,7 @@ const ProductsTable = () => {
 
   const [search, setSearch] = useState<string>(searchParam);
   const [page, setPage] = useState<number>(1);
+  const recordsPerPage = 7;
 
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
@@ -179,8 +174,7 @@ const ProductsTable = () => {
         </tbody>
       </StyledProductsTable>
       <ProductPagination
-        totalPages={totalPages}
-        recordsPerPage={recordsPerPage}
+        page={page}
         paginate={paginate}
         prevPage={prevPage}
         nextPage={nextPage}
