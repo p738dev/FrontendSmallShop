@@ -1,4 +1,6 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 
 import {
   StyledAreaList,
@@ -7,36 +9,43 @@ import {
   StyledButtonPage,
 } from "./ProductPagination.css";
 
-interface Props {
-  totalPages: number;
-  recordsPerPage: number;
+interface PropsPaginate {
+  page: number;
   paginate: (pageNumber: number) => void;
   prevPage: () => void;
   nextPage: () => void;
 }
 
 const ProductPagination = ({
-  totalPages,
-  recordsPerPage,
+  page,
   paginate,
   prevPage,
   nextPage,
-}: Props) => {
-  const pageNumbers = Math.ceil(totalPages / recordsPerPage);
+}: PropsPaginate) => {
+  const { totalPages, recordsPerPage } = useSelector(
+    (state: RootState) => state.products
+  );
 
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalPages / recordsPerPage); i++) {
+    pageNumbers.push(i);
+  }
   return (
     <StyledAreaPagination>
       <StyledAreaNav>
         <StyledAreaList>
           <StyledButtonPage onClick={prevPage}>Prev</StyledButtonPage>
-          {pageNumbers > 0 &&
-            [...Array(pageNumbers)].map((number, index) => (
-              <li key={index}>
-                <StyledButtonPage onClick={() => paginate(index)}>
-                  {index + 1}
-                </StyledButtonPage>
-              </li>
-            ))}
+          {pageNumbers.map((num) => (
+            <li key={num}>
+              <StyledButtonPage
+                className={page === num ? "active" : ""}
+                onClick={() => paginate(num)}
+              >
+                {num}
+              </StyledButtonPage>
+            </li>
+          ))}
           <StyledButtonPage onClick={nextPage}>Next</StyledButtonPage>
         </StyledAreaList>
       </StyledAreaNav>

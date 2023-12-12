@@ -39,15 +39,11 @@ export const StyledAreaList = styled.ul`
 export const StyledButtonPage = styled.button`
   width: 35px;
   height: 25px;
-  background-color: lightblue;
-  color: black;
+  background-color: #ddd;
+  color: #000;
   cursor: pointer;
 
-  &:hover {
-    opacity: 0.7;
-  }
-
-  &:active {
-    scale: 0.9;
+  &.active {
+    background-color: #0ea9ec;
   }
 `;
