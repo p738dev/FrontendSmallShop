@@ -54,11 +54,13 @@ const LoginPage = () => {
         token: string;
         message: string;
         role_name: string;
+        name: string;
       }> = await axios.post<{
         is_success: boolean;
         token: string;
         message: string;
         role_name: string;
+        name: string;
       }>("http://localhost:8000/api/login", values, {
         headers: {
           Authorization: `Bearer ${loginToken}`,
@@ -66,10 +68,12 @@ const LoginPage = () => {
       });
       const role = res.data.role_name;
       const token = res.data.token;
+      const name = res.data.name;
       Cookies.set("token", token, { expires: 1 });
       Cookies.set("role", role, { expires: 1 });
+      Cookies.set("name", name, { expires: 1 });
 
-      if (token && location.pathname.includes("login")) {
+      if (token && role === "admin" && location.pathname.includes("login")) {
         navigate("/admin");
       }
       if (token && role === "user" && location.pathname.includes("login")) {
