@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 
 interface LogoutState {}
@@ -10,15 +10,22 @@ const token = Cookies.get("token");
 
 export const logOut = createAsyncThunk("logout/logOut", async () => {
   try {
-    await axios.get(`http://localhost:8000/api/logout`, {
+    const response: AxiosResponse<{ is_success: boolean }> = await axios.get<{
+      is_success: boolean;
+    }>(`http://localhost:8000/api/logout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
     Cookies.remove("token");
     Cookies.remove("role");
-  } catch (error) {
-    //console.log(error);
+    return response;
+  } catch (error: any) {
+    if (error.response.data.is_success === "false") {
+      console.log("blad");
+    } else {
+      console.log("zle wylogowanie");
+    }
   }
 });
 
