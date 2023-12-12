@@ -19,6 +19,7 @@ export const logOut = createAsyncThunk("logout/logOut", async () => {
     });
     Cookies.remove("token");
     Cookies.remove("role");
+    Cookies.remove("name");
     return response;
   } catch (error: any) {
     if (error.response.data.is_success === "false") {
