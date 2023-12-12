@@ -13,6 +13,7 @@ export const ModalContainer = styled.div`
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  z-index: 999;
 
   @media (min-width: 768px) and (max-width: 992px) {
     width: 400px;
