@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Product } from "../../types/product";
 import { AppDispatch, RootState } from "../../store";
 import { getShopProducts } from "../../store/shopSlice";
+import { addProductToCart } from "../../store/cartSlice";
 
 import {
   StyledShopContainer,
@@ -64,7 +65,9 @@ const ShopPage = () => {
                   <StyledValueCategory>{product.category}</StyledValueCategory>
                 </p>
               </StyledAreaCartBottom>
-              <StyledAddToCartButton type="button">
+              <StyledAddToCartButton
+                onClick={() => dispatch(addProductToCart(product))}
+              >
                 Dodaj do koszyka
               </StyledAddToCartButton>
               <StyledViewProduct

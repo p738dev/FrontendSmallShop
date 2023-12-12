@@ -128,6 +128,7 @@ export const StyledViewProduct = styled(Link)`
   background-color: #556b2f;
   color: #fff;
   border: none;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
