@@ -23,9 +23,9 @@ export const logOut = createAsyncThunk("logout/logOut", async () => {
     return response;
   } catch (error: any) {
     if (error.response.data.is_success === "false") {
-      console.log("blad");
+      //
     } else {
-      console.log("zle wylogowanie");
+      //
     }
   }
 });
