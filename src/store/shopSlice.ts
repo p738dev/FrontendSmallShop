@@ -23,7 +23,6 @@ export const getShopProducts = createAsyncThunk(
       const response = await axios.get(
         `http://www.api.piotrgruca.pl/api/products?page=${page}`
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {}
   }
