@@ -50,7 +50,7 @@ const RegisterPage = () => {
   const registerSubmit = async (values: FormRegisterValues) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/users/store",
+        "http://www.api.piotrgruca.pl/api/users/store",
         values
       );
       if (res.data.is_success) {

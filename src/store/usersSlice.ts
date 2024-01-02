@@ -16,7 +16,7 @@ const initialState: UserState = {
 const token = Cookies.get("token");
 
 export const getUsers = createAsyncThunk("users/getUsers", async () => {
-  const response = await axios.get(`http://localhost:8000/api/users`, {
+  const response = await axios.get(`http://www.api.piotrgruca.pl/api/users`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

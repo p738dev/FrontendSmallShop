@@ -21,7 +21,7 @@ export const getShopProducts = createAsyncThunk(
   async (page: number) => {
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/products?page=${page}`
+        `http://www.api.piotrgruca.pl/api/products?page=${page}`
       );
       console.log(response.data);
       return response.data;

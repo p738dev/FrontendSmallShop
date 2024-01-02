@@ -51,7 +51,7 @@ const AddProduct = () => {
   const addProduct = async (product: ProductToAdd) => {
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/products",
+        "http://www.api.piotrgruca.pl/api/products",
         product,
         {
           headers: {

@@ -50,7 +50,9 @@ const EditProduct = () => {
   };
 
   const loadProduct = async () => {
-    const res = await axios.get(`http://localhost:8000/api/products/${id}`);
+    const res = await axios.get(
+      `http://www.api.piotrgruca.pl/api/products/${id}`
+    );
     setInitial(res.data);
   };
 
@@ -62,7 +64,7 @@ const EditProduct = () => {
     try {
       const res: AxiosResponse<{ success: boolean }> = await axios.put<{
         success: boolean;
-      }>(`http://localhost:8000/api/product_update/${id}`, values, {
+      }>(`http://www.api.piotrgruca.pl/api/product_update/${id}`, values, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

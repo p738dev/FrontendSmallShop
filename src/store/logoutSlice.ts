@@ -12,7 +12,7 @@ export const logOut = createAsyncThunk("logout/logOut", async () => {
   try {
     const response: AxiosResponse<{ is_success: boolean }> = await axios.get<{
       is_success: boolean;
-    }>(`http://localhost:8000/api/logout`, {
+    }>(`http://www.api.piotrgruca.pl/api/logout`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

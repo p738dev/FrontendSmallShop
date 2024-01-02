@@ -29,7 +29,7 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (params: any) => {
     const res = await axios.get(
-      `http://localhost:8000/api/products?page=${params.page}&searchParam=${params.searchParam}&sortParam=${params.sortParam}`
+      `http://www.api.piotrgruca.pl/api/products?page=${params.page}&searchParam=${params.searchParam}&sortParam=${params.sortParam}`
     );
     return res.data;
   }
@@ -38,11 +38,14 @@ export const getProducts = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (id: string) => {
-    const res = await axios.delete(`http://localhost:8000/api/products/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await axios.delete(
+      `http://www.api.piotrgruca.pl/api/products/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     return res.data;
   }
 );

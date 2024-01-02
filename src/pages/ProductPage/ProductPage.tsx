@@ -31,7 +31,7 @@ const ProductPage = () => {
 
   const fetchProductDetails = async () => {
     const response: AxiosResponse = await axios.get<Product>(
-      `http://localhost:8000/api/products/${id}`
+      `http://www.api.piotrgruca.pl/api/products/${id}`
     );
     setProductDetails(response.data);
   };
