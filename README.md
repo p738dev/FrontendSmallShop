@@ -1,3 +1,7 @@
-## Project with example small online shop
+## This project is a sample exercise using programming technology
 
-## Technologies: React/React-Redux/Typescript
+## Small online shop with login to admin panel
+
+## Technologies: React/redux-toolkit/Typescript
+
+## Rest api is connected with laravel
