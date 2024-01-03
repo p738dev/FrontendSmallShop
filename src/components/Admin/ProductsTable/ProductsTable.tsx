@@ -72,7 +72,7 @@ const ProductsTable = () => {
     }
   }, [page, searchParam, searchParams.get("sort"), sortParam]);
 
-  const paginate = (pageNumber: number) => setPage(pageNumber + 1);
+  const paginate = (pageNumber: number) => setPage(pageNumber);
 
   const prevPage = () => {
     if (page !== firstIndex) {
@@ -131,8 +131,8 @@ const ProductsTable = () => {
           }}
         >
           <option value={""}></option>
-          <option value={"desc"}>Cena od najniższej</option>
-          <option value={"asc"}>Cena od najwyższej</option>
+          <option value={"asc"}>Cena od najniższej</option>
+          <option value={"desc"}>Cena od najwyższej</option>
         </StyledSortSelect>
       </StyledSortArea>
       <StyledAreaNewProduct>
